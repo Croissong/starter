@@ -1,0 +1,22 @@
+version: '3.6'
+services:
+  spa:
+    build:
+      context: ./spa
+    expose:
+      - "4000"
+    volumes:
+      - spa-dist:/dist
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - spa-dist:/app/spa
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/mime.types:/etc/nginx/mime.types
+      - ./nginx/app.conf:/etc/nginx/sites-enabled/app.conf
+    ports:
+      - "8080:80"
+    depends_on:
+      - spa
+volumes:
+  spa-dist:
