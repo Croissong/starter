@@ -1,3 +1,6 @@
 [submodule "spa"]
 	path = spa
 	url = ./spa/
+[submodule "spring"]
+	path = spring
+	url = ./spring/

@@ -7,6 +7,13 @@ services:
       - "4000"
     volumes:
       - spa-dist:/dist
+  spring:
+    build:
+      context: ./spring
+    ports:
+      - "5005:5005"
+    expose:
+      - "8080"
   nginx:
     image: nginx:alpine
     volumes:
@@ -18,5 +25,6 @@ services:
       - "8080:80"
     depends_on:
       - spa
+      - spring
 volumes:
   spa-dist:
