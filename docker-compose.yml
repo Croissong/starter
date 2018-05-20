@@ -7,6 +7,11 @@ services:
       - "4000"
     volumes:
       - spa-dist:/dist
+  postgres:
+    image: postgres:alpine
+    env_file: .env
+    expose:
+      - "5432"
   spring:
     build:
       context: ./spring
@@ -14,6 +19,8 @@ services:
       - "5005:5005"
     expose:
       - "8080"
+    depends_on:
+      - postgres  
   nginx:
     image: nginx:alpine
     volumes:
